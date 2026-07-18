@@ -1,4 +1,4 @@
-import { Category, Status } from './types';
+import { Category, RevelationType, Status } from './types';
 
 export const CATEGORIES: Category[] = [
   '身分宣告',
@@ -27,8 +27,19 @@ export const STATUS_BADGE_CLASS: Record<Status, string> = {
   '尚未開始': 'bg-slate-100 text-slate-500 border-slate-200',
   '進行中': 'bg-amber-100 text-amber-700 border-amber-200',
   '已建立習慣': 'bg-violet-100 text-violet-700 border-violet-200',
-  '已成就': 'bg-[#16244F] text-[#FFE29A] border-[#16244F]',
+  '已成就': 'bg-[#232A63] text-[#FFE29A] border-[#232A63]',
 };
+
+export const TYPES: RevelationType[] = ['一次性行動', '持續性操練', '身分宣告'];
+
+export const TYPE_BADGE_CLASS: Record<RevelationType, string> = {
+  一次性行動: 'bg-slate-50 text-slate-600 border-slate-200',
+  持續性操練: 'bg-sky-50 text-sky-700 border-sky-200',
+  身分宣告: 'bg-violet-50 text-violet-700 border-violet-300',
+};
+
+// Repeated words are worth surfacing: 3+ recurrences not yet habit/fulfilled.
+export const RECUR_CALLOUT_THRESHOLD = 3;
 
 export const CATEGORY_BADGE_CLASS: Record<Category, string> = {
   身分宣告: 'bg-violet-50 text-violet-700 border-violet-200',

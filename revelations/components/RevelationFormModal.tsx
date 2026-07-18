@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { X } from 'lucide-react';
-import { Category, Revelation, RevelationDraft, Status } from '../types';
-import { CATEGORIES, STATUSES } from '../constants';
+import { Category, Revelation, RevelationDraft, RevelationType, Status } from '../types';
+import { CATEGORIES, STATUSES, TYPES } from '../constants';
 import OilLamp from './OilLamp';
 
 interface RevelationFormModalProps {
@@ -14,6 +14,7 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
   const [text, setText] = useState(initial?.text ?? '');
   const [category, setCategory] = useState<Category>(initial?.category ?? CATEGORIES[0]);
   const [status, setStatus] = useState<Status>(initial?.status ?? STATUSES[0]);
+  const [type, setType] = useState<RevelationType>(initial?.type ?? TYPES[0]);
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
     if (!trimmed) return;
     setSaving(true);
     try {
-      await onSubmit({ text: trimmed, category, status });
+      await onSubmit({ text: trimmed, category, status, type });
       onClose();
     } finally {
       setSaving(false);
@@ -39,7 +40,7 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#16244F]/40 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#232A63]/40 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
@@ -47,7 +48,7 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-violet-100">
-          <h2 className="text-xl font-bold text-[#16244F]">{initial ? '編輯啟示' : '新增啟示'}</h2>
+          <h2 className="text-xl font-bold text-[#232A63]">{initial ? '編輯啟示' : '新增啟示'}</h2>
           <button
             onClick={onClose}
             className="p-1.5 rounded-full text-violet-400 hover:bg-violet-50 hover:text-violet-700"
@@ -59,19 +60,19 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
 
         <form onSubmit={handleSubmit} className="px-6 py-5 space-y-5">
           <div>
-            <label className="block text-sm font-bold text-[#16244F] mb-2">啟示內容</label>
+            <label className="block text-sm font-bold text-[#232A63] mb-2">啟示內容</label>
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
               rows={5}
               required
               placeholder="記下神對你說的話..."
-              className="w-full rounded-xl border border-violet-200 px-4 py-3 text-[#16244F] placeholder:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent resize-none"
+              className="w-full rounded-xl border border-violet-200 px-4 py-3 text-[#232A63] placeholder:text-violet-300 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:border-transparent resize-none"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-[#16244F] mb-2">分類</label>
+            <label className="block text-sm font-bold text-[#232A63] mb-2">分類</label>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map((c) => (
                 <button
@@ -91,7 +92,27 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-[#16244F] mb-2">狀態</label>
+            <label className="block text-sm font-bold text-[#232A63] mb-2">類型</label>
+            <div className="flex flex-wrap gap-2">
+              {TYPES.map((t) => (
+                <button
+                  type="button"
+                  key={t}
+                  onClick={() => setType(t)}
+                  className={`text-sm px-3 py-1.5 rounded-full border font-medium transition-colors ${
+                    type === t
+                      ? 'bg-violet-600 border-violet-600 text-white'
+                      : 'bg-white border-violet-200 text-violet-600 hover:bg-violet-50'
+                  }`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-bold text-[#232A63] mb-2">狀態</label>
             <div className="flex flex-wrap gap-2">
               {STATUSES.map((s) => (
                 <button
@@ -100,7 +121,7 @@ const RevelationFormModal: React.FC<RevelationFormModalProps> = ({ initial, onCl
                   onClick={() => setStatus(s)}
                   className={`flex items-center gap-2 text-sm px-3 py-1.5 rounded-full border font-medium transition-colors ${
                     status === s
-                      ? 'bg-[#16244F] border-[#16244F] text-white'
+                      ? 'bg-[#232A63] border-[#232A63] text-white'
                       : 'bg-white border-violet-200 text-violet-600 hover:bg-violet-50'
                   }`}
                 >

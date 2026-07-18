@@ -72,7 +72,7 @@ const OilLamp: React.FC<OilLampProps> = ({ status, size = 28, className = '' }) 
 
         <path
           d="M10 30 C10 27, 15 26, 24 26 C33 26, 38 27, 38 30 C38 38, 32 43, 24 43 C16 43, 10 38, 10 30 Z"
-          fill="#16244F"
+          fill="#232A63"
         />
         <ellipse cx="24" cy="30" rx="12.5" ry="3.2" fill="#2C3E7A" opacity="0.6" />
 

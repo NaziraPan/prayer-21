@@ -11,6 +11,10 @@ body {
   font-family: 'Zhi Mang Xing', cursive;
 }
 
+.font-serif-tc {
+  font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
+}
+
 @keyframes lamp-glow-pulse {
   0%,
   100% {
