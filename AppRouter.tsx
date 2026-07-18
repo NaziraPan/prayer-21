@@ -8,7 +8,7 @@ const AppRouter: React.FC = () => {
     <HashRouter>
       <Routes>
         <Route path="/" element={<PrayerApp />} />
-        <Route path="/revelations" element={<RevelationApp />} />
+        <Route path="/revelations" element={<RevelationApp showBackLink />} />
       </Routes>
     </HashRouter>
   );

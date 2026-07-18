@@ -12,7 +12,14 @@ import {
 import RevelationCard from './components/RevelationCard';
 import RevelationFormModal from './components/RevelationFormModal';
 
-const RevelationApp: React.FC = () => {
+interface RevelationAppProps {
+  // When embedded inside the prayer check-in site's router, show a link
+  // back to that site. The standalone deployment has no such link — it's
+  // a separate, independent app with no visible tie to the other site.
+  showBackLink?: boolean;
+}
+
+const RevelationApp: React.FC<RevelationAppProps> = ({ showBackLink = false }) => {
   const [revelations, setRevelations] = useState<Revelation[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -66,12 +73,14 @@ const RevelationApp: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#EEE7F9] pb-24">
       <header className="pt-8 pb-6 px-4 text-center">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1 text-sm font-medium text-violet-500 hover:text-violet-700 mb-3"
-        >
-          <ArrowLeft size={14} /> 回到打卡首頁
-        </Link>
+        {showBackLink && (
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm font-medium text-violet-500 hover:text-violet-700 mb-3"
+          >
+            <ArrowLeft size={14} /> 回到打卡首頁
+          </Link>
+        )}
         <div className="flex items-center justify-center gap-2 mb-1">
           <Flame className="text-violet-600 w-7 h-7" />
           <h1 className="text-3xl font-bold text-[#16244F] tracking-wide">啟示追蹤器</h1>
