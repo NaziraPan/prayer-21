@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#EDE6F8"/>
+      <stop offset="1" stop-color="#DCCFF2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="42%">
+      <stop offset="0" stop-color="#FFE29A" stop-opacity="0.95"/>
+      <stop offset="55%" stop-color="#F3B94D" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#F3B94D" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#E8792B"/>
+      <stop offset="0.55" stop-color="#F7B733"/>
+      <stop offset="1" stop-color="#FFE9A8"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2C3E7A"/>
+      <stop offset="1" stop-color="#141B3D"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8B5CF6"/>
+      <stop offset="1" stop-color="#5B21B6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <circle cx="256" cy="205" r="150" fill="url(#glow)"/>
+
+  <path d="M256 118 C 232 160, 224 190, 240 218 C 248 232, 268 232, 276 218 C 292 190, 280 160, 256 118 Z" fill="url(#flame)"/>
+  <path d="M256 158 C 246 178, 244 194, 253 208 C 257 214, 265 214, 268 208 C 274 194, 266 178, 256 158 Z" fill="#FFF3D6" opacity="0.9"/>
+
+  <rect x="244" y="228" width="24" height="20" rx="4" fill="url(#metal)"/>
+
+  <path d="M150 260 C 150 244, 168 236, 256 236 C 344 236, 362 244, 362 260 C 362 300, 322 336, 256 336 C 190 336, 150 300, 150 260 Z" fill="url(#body)"/>
+  <ellipse cx="256" cy="260" rx="106" ry="26" fill="#3A4B8F" opacity="0.55"/>
+
+  <path d="M362 268 C 392 268, 408 282, 404 300 C 400 316, 378 320, 362 312 Z" fill="url(#metal)"/>
+
+  <path d="M188 336 C 188 356, 216 372, 256 372 C 296 372, 324 356, 324 336 L 314 336 C 314 348, 288 360, 256 360 C 224 360, 198 348, 198 336 Z" fill="url(#metal)"/>
+  <rect x="236" y="368" width="40" height="16" rx="6" fill="url(#metal)"/>
+  <ellipse cx="256" cy="390" rx="46" ry="10" fill="#5B21B6" opacity="0.35"/>
+</svg>

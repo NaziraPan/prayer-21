@@ -1,49 +1,13 @@
-import { initializeApp } from "firebase/app";
-import { 
-  getFirestore, 
-  collection, 
-  doc, 
-  setDoc, 
-  onSnapshot, 
-  updateDoc, 
+import {
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  updateDoc,
   getDoc
 } from "firebase/firestore";
+import { db } from "./firebaseApp";
 import { DailyRecord, ProgressData, UserID } from "../types";
-
-// ------------------------------------------------------------------
-// 🔥 關鍵步驟：請將下方的設定替換為您從 Firebase 控制台複製的內容
-// ------------------------------------------------------------------
-// 1. 前往 https://console.firebase.google.com/
-// 2. 建立專案 -> 建立 Firestore Database (選擇測試模式 Test Mode)
-// 3. 專案設定 -> 一般 -> 新增網頁應用程式 (Web App) -> 複製 firebaseConfig
-// ------------------------------------------------------------------
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCzoTNUH7yekyS2-Uu2LwOLRrmDuNa437o",
-  authDomain: "prayer-21.firebaseapp.com",
-  projectId: "prayer-21",
-  storageBucket: "prayer-21.firebasestorage.app",
-  messagingSenderId: "107274688872",
-  appId: "1:107274688872:web:0ebe3be91935cef9b81edd",
-  measurementId: "G-8NSHBSE3L7"
-};
-
-// Initialize Firebase
-let db: any = null;
-
-try {
-  // 檢查是否已經填入真實的 API Key
-  // 如果您填入了真實的 Key，這裡就會啟動 Firebase 連線
-  if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
-    const app = initializeApp(firebaseConfig);
-    db = getFirestore(app);
-    console.log("✅ Firebase 連線成功！資料將會同步。");
-  } else {
-    console.warn("⚠️ 尚未設定 Firebase API Key。目前處於「單機演示模式」，資料僅存在您的瀏覽器中，無法與他人同步。");
-  }
-} catch (e) {
-  console.error("Firebase 初始化失敗:", e);
-}
 
 // 修改這裡：將 2026 改回 2025
 const COLLECTION_NAME = "prayer_challenge_2025";

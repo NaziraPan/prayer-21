@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Grape, Sparkles, Leaf } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Grape, Sparkles, Leaf, Flame } from 'lucide-react';
 import { USERS, START_DATE, ORDERED_USER_IDS, INDIVIDUAL_QUOTES, GROUP_VERSES } from './constants';
 // ✅ 修正路徑：因為您有 services 資料夾，這裡必須加上 ./services/
 import { subscribeToProgress, toggleCheckIn } from './services/firebase'; 
@@ -8,7 +9,7 @@ import { ProgressData, UserConfig } from './types';
 import { CheckInButton } from './components/CheckInButton';
 import { VineProgress } from './components/VineProgress';
 
-const App: React.FC = () => {
+const PrayerApp: React.FC = () => {
   const [currentUser, setCurrentUser] = useState<UserConfig | null>(null);
   const [progressData, setProgressData] = useState<ProgressData>({});
   const [todayDateStr, setTodayDateStr] = useState<string>('');
@@ -154,6 +155,14 @@ const App: React.FC = () => {
              ⚠️ 預演模式：目前日期早於開始日，系統模擬為 Day 1
            </div>
         )}
+        <div className="mt-4">
+          <Link
+            to="/revelations"
+            className="inline-flex items-center gap-1.5 text-sm font-bold text-violet-600 bg-violet-50 hover:bg-violet-100 px-4 py-1.5 rounded-full transition-colors"
+          >
+            <Flame size={14} /> 前往啟示追蹤器
+          </Link>
+        </div>
       </header>
 
       {/* Main Container */}
@@ -248,4 +257,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default PrayerApp;

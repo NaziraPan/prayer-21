@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Outfit', sans-serif;
+  background-color: #fdf4ff; /* Very light fuchsia tint */
+}
+
+.font-handwriting {
+  font-family: 'Zhi Mang Xing', cursive;
+}
+
+@keyframes lamp-glow-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-lamp-glow {
+  animation: lamp-glow-pulse 2.4s ease-in-out infinite;
+}

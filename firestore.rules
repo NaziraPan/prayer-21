@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Personal single-user app, no login flow — keep data readable/writable
+    // by anyone holding the Firebase config (same trust model as the
+    // existing prayer_challenge_2025 collection in this project).
+    // Unlike Firebase's default 30-day "test mode" rules, this does not expire.
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
