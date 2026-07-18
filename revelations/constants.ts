@@ -15,41 +15,15 @@ export const CATEGORIES: Category[] = [
 
 export const STATUSES: Status[] = ['尚未開始', '進行中', '已建立習慣', '已成就'];
 
-// Oil lamp visual stage per status: 1=未點燈 2=半亮 3=全亮 4=穩定發光
-export const STATUS_LAMP_STAGE: Record<Status, 1 | 2 | 3 | 4> = {
-  '尚未開始': 1,
-  '進行中': 2,
-  '已建立習慣': 3,
-  '已成就': 4,
-};
-
-export const STATUS_BADGE_CLASS: Record<Status, string> = {
-  '尚未開始': 'bg-slate-100 text-slate-500 border-slate-200',
-  '進行中': 'bg-amber-100 text-amber-700 border-amber-200',
-  '已建立習慣': 'bg-violet-100 text-violet-700 border-violet-200',
-  '已成就': 'bg-[#232A63] text-[#FFE29A] border-[#232A63]',
+// English keys purely for the status-btn[data-s] CSS selectors.
+export const STATUS_KEY: Record<Status, string> = {
+  尚未開始: 'not_started',
+  進行中: 'in_progress',
+  已建立習慣: 'habit',
+  已成就: 'fulfilled',
 };
 
 export const TYPES: RevelationType[] = ['一次性行動', '持續性操練', '身分宣告'];
 
-export const TYPE_BADGE_CLASS: Record<RevelationType, string> = {
-  一次性行動: 'bg-slate-50 text-slate-600 border-slate-200',
-  持續性操練: 'bg-sky-50 text-sky-700 border-sky-200',
-  身分宣告: 'bg-violet-50 text-violet-700 border-violet-300',
-};
-
 // Repeated words are worth surfacing: 3+ recurrences not yet habit/fulfilled.
 export const RECUR_CALLOUT_THRESHOLD = 3;
-
-export const CATEGORY_BADGE_CLASS: Record<Category, string> = {
-  身分宣告: 'bg-violet-50 text-violet-700 border-violet-200',
-  健康紀律: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  學業: 'bg-sky-50 text-sky-700 border-sky-200',
-  宣教: 'bg-orange-50 text-orange-700 border-orange-200',
-  禱告操練: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-  同工合一: 'bg-teal-50 text-teal-700 border-teal-200',
-  建造異象: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200',
-  鑑察警醒: 'bg-rose-50 text-rose-700 border-rose-200',
-  詩歌創作: 'bg-pink-50 text-pink-700 border-pink-200',
-  讀經筆記: 'bg-amber-50 text-amber-700 border-amber-200',
-};

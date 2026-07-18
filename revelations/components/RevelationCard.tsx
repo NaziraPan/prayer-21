@@ -1,86 +1,112 @@
-import React from 'react';
-import { Pencil, Trash2, Flame } from 'lucide-react';
-import { Revelation } from '../types';
-import { CATEGORY_BADGE_CLASS, STATUS_BADGE_CLASS, TYPE_BADGE_CLASS } from '../constants';
+import React, { useState } from 'react';
+import { Category, Revelation, RevelationDraft, RevelationType, Status } from '../types';
+import { CATEGORIES, STATUSES, STATUS_KEY, TYPES } from '../constants';
 import OilLamp from './OilLamp';
 
 interface RevelationCardProps {
   revelation: Revelation;
-  onEdit: () => void;
+  onSave: (patch: Partial<RevelationDraft>) => Promise<void>;
+  onSetStatus: (status: Status) => void;
   onDelete: () => void;
   onBumpRecurrence: () => void;
 }
 
 const RevelationCard: React.FC<RevelationCardProps> = ({
   revelation,
-  onEdit,
+  onSave,
+  onSetStatus,
   onDelete,
   onBumpRecurrence,
 }) => {
-  const dateRange =
-    revelation.firstDate === revelation.lastDate
-      ? revelation.firstDate
-      : `${revelation.firstDate} ～ ${revelation.lastDate}`;
+  const [editing, setEditing] = useState(false);
+  const [text, setText] = useState(revelation.text);
+  const [category, setCategory] = useState<Category>(revelation.category);
+  const [type, setType] = useState<RevelationType>(revelation.type);
+
+  const startEdit = () => {
+    setText(revelation.text);
+    setCategory(revelation.category);
+    setType(revelation.type);
+    setEditing(true);
+  };
+
+  const handleSave = async () => {
+    const trimmed = text.trim();
+    if (!trimmed) return;
+    await onSave({ text: trimmed, category, type });
+    setEditing(false);
+  };
 
   return (
-    <div className="bg-white rounded-2xl border border-violet-100 shadow-sm hover:shadow-md transition-shadow p-5 flex gap-4">
-      <OilLamp status={revelation.status} size={36} className="mt-1" />
-      <div className="flex-1 min-w-0">
-        <div className="flex flex-wrap items-center gap-2 mb-2">
-          <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-full border ${CATEGORY_BADGE_CLASS[revelation.category]}`}
-          >
-            {revelation.category}
-          </span>
-          <span
-            className={`text-xs font-bold px-2.5 py-1 rounded-full border ${STATUS_BADGE_CLASS[revelation.status]}`}
-          >
-            {revelation.status}
-          </span>
-          <span
-            className={`text-xs font-medium px-2.5 py-1 rounded-full border ${TYPE_BADGE_CLASS[revelation.type]}`}
-          >
-            {revelation.type}
-          </span>
-          {revelation.recurCount > 1 && (
-            <span className="text-xs font-bold px-2.5 py-1 rounded-full border bg-amber-50 text-amber-700 border-amber-200">
-              重複 {revelation.recurCount} 次
-            </span>
-          )}
-        </div>
-        <p className="text-[#232A63] whitespace-pre-wrap leading-relaxed break-words">
-          {revelation.text}
-        </p>
-        <div className="mt-3 flex items-center justify-between flex-wrap gap-2">
-          <span className="text-xs text-violet-400">{dateRange}</span>
-          <div className="flex items-center gap-1">
-            <button
-              onClick={onBumpRecurrence}
-              className="p-2 rounded-lg text-amber-500 hover:bg-amber-50 hover:text-amber-700 transition-colors"
-              title="又來一次（重複領受）"
-              aria-label="又來一次"
-            >
-              <Flame size={16} />
+    <div className="entry">
+      <div>
+        <OilLamp status={revelation.status} />
+      </div>
+      {editing ? (
+        <div className="edit-box">
+          <textarea rows={2} value={text} onChange={(e) => setText(e.target.value)} />
+          <div className="row">
+            <select value={category} onChange={(e) => setCategory(e.target.value as Category)}>
+              {CATEGORIES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+            <select value={type} onChange={(e) => setType(e.target.value as RevelationType)}>
+              {TYPES.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="edit-actions">
+            <button className="save-btn" type="button" onClick={handleSave}>
+              儲存
             </button>
-            <button
-              onClick={onEdit}
-              className="p-2 rounded-lg text-violet-500 hover:bg-violet-50 hover:text-violet-700 transition-colors"
-              title="編輯"
-              aria-label="編輯"
-            >
-              <Pencil size={16} />
-            </button>
-            <button
-              onClick={onDelete}
-              className="p-2 rounded-lg text-rose-400 hover:bg-rose-50 hover:text-rose-600 transition-colors"
-              title="刪除"
-              aria-label="刪除"
-            >
-              <Trash2 size={16} />
+            <button className="cancel-btn" type="button" onClick={() => setEditing(false)}>
+              取消
             </button>
           </div>
         </div>
-      </div>
+      ) : (
+        <div>
+          <p className="entry-text">{revelation.text}</p>
+          <div className="entry-meta">
+            <span className="tag">{revelation.category}</span>
+            <span className="tag">{revelation.type}</span>
+            首次：{revelation.firstDate}
+            {revelation.recurCount > 1 && (
+              <>
+                　· 重複 <span className="recur-num">{revelation.recurCount}</span> 次
+              </>
+            )}
+          </div>
+          <div className="status-row">
+            {STATUSES.map((s) => (
+              <button
+                key={s}
+                type="button"
+                className={`status-btn ${s === revelation.status ? 'active' : ''}`}
+                data-s={STATUS_KEY[s]}
+                onClick={() => onSetStatus(s)}
+              >
+                {s}
+              </button>
+            ))}
+            <button className="icon-btn" type="button" onClick={onBumpRecurrence}>
+              🔥 又來一次
+            </button>
+            <button className="icon-btn" type="button" onClick={startEdit}>
+              ✏️ 編輯
+            </button>
+            <button className="icon-btn danger" type="button" onClick={onDelete}>
+              🗑 刪除
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
