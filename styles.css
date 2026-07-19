@@ -53,11 +53,18 @@ body {
 }
 .rhema-app .masthead h1 {
   font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   margin: 0;
   letter-spacing: 1px;
-  color: #DABECA;
+  color: #8E7AA3;
+  -webkit-text-stroke: 1px #fff;
+  paint-order: stroke fill;
+  text-shadow:
+    -1px -1px 0 #fff,
+    1px -1px 0 #fff,
+    -1px 1px 0 #fff,
+    1px 1px 0 #fff;
 }
 .rhema-app .masthead .verse {
   font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
