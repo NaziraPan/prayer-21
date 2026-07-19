@@ -63,7 +63,7 @@ body {
   font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
   font-style: italic;
   font-weight: 700;
-  color: var(--violet);
+  color: #0000C6;
   font-size: 18px;
   text-align: right;
 }
@@ -159,7 +159,7 @@ body {
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;
-  color: var(--ink);
+  color: #0000C6;
   padding: 9px 4px;
   cursor: pointer;
   border-radius: 0;
@@ -169,7 +169,7 @@ body {
 }
 .rhema-app .cat-btn.active {
   font-weight: 800;
-  color: var(--navy);
+  color: #0000C6;
 }
 .rhema-app .cat-btn .n {
   color: var(--violet);
@@ -202,7 +202,7 @@ body {
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 6px;
-  color: var(--navy);
+  color: #0000C6;
 }
 .rhema-app .entry-meta {
   font-size: 11.5px;
