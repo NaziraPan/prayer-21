@@ -22,8 +22,8 @@ export default defineConfig(({ mode }) => {
           registerType: 'autoUpdate',
           includeAssets: ['icon.svg', 'apple-touch-icon.png', 'favicon-32.png'],
           manifest: {
-            name: '啟示追蹤器',
-            short_name: '啟示追蹤器',
+            name: '小路rhema追蹤器',
+            short_name: '小路rhema追蹤器',
             description: '記錄與追蹤個人領受的啟示，分類、標記狀態、隨時搜尋。',
             start_url: '/',
             scope: '/',

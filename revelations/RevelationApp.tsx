@@ -111,7 +111,7 @@ const RevelationApp: React.FC<RevelationAppProps> = ({ showBackLink = false }) =
         )}
 
         <div className="masthead">
-          <h1>啟示追蹤器</h1>
+          <h1>小路rhema追蹤器</h1>
           <div className="verse">祢的話是我腳前的燈，是我路上的光。——詩篇 119:105</div>
         </div>
 
