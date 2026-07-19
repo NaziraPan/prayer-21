@@ -62,8 +62,9 @@ body {
 .rhema-app .masthead .verse {
   font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
   font-style: italic;
+  font-weight: 700;
   color: var(--violet);
-  font-size: 14px;
+  font-size: 18px;
   text-align: right;
 }
 
@@ -156,9 +157,10 @@ body {
   background: none;
   border: none;
   font-family: inherit;
-  font-size: 13.5px;
+  font-size: 16px;
+  font-weight: 600;
   color: var(--ink);
-  padding: 8px 4px;
+  padding: 9px 4px;
   cursor: pointer;
   border-radius: 0;
 }
@@ -166,13 +168,13 @@ body {
   color: var(--violet);
 }
 .rhema-app .cat-btn.active {
-  font-weight: 700;
+  font-weight: 800;
   color: var(--navy);
 }
 .rhema-app .cat-btn .n {
   color: var(--violet);
   font-weight: 700;
-  font-size: 15px;
+  font-size: 16px;
   min-width: 26px;
   text-align: right;
 }
@@ -196,9 +198,11 @@ body {
   border-bottom: 1px solid var(--line);
 }
 .rhema-app .entry-text {
-  font-size: 14.5px;
-  line-height: 1.6;
-  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 6px;
+  color: var(--navy);
 }
 .rhema-app .entry-meta {
   font-size: 11.5px;
