@@ -57,14 +57,18 @@ body {
   font-weight: 700;
   margin: 0;
   letter-spacing: 1px;
-  color: #8E7AA3;
-  -webkit-text-stroke: 1px #fff;
+  color: #9E5C9E;
+  -webkit-text-stroke: 3px #fff;
   paint-order: stroke fill;
   text-shadow:
-    -1px -1px 0 #fff,
-    1px -1px 0 #fff,
-    -1px 1px 0 #fff,
-    1px 1px 0 #fff;
+    -2px -2px 0 #fff,
+    2px -2px 0 #fff,
+    -2px 2px 0 #fff,
+    2px 2px 0 #fff,
+    0 -2px 0 #fff,
+    0 2px 0 #fff,
+    -2px 0 0 #fff,
+    2px 0 0 #fff;
 }
 .rhema-app .masthead .verse {
   font-family: 'Noto Serif TC', 'PMingLiU', 'Songti TC', serif;
